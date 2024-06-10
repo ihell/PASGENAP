@@ -27,8 +27,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function ambilDaftarPembeli() {
-  const refDokumen = collection(db, "pembeli");
+export async function ambilDaftarAbsensi() {
+  const refDokumen = collection(db, "absensi");
   const kueri = query(refDokumen, orderBy("nama"));
   const cuplikanKueri = await getDocs(kueri);
 
@@ -36,9 +36,14 @@ export async function ambilDaftarPembeli() {
   cuplikanKueri.forEach((dok) => {
     hasil.push({
       id: dok.id,
+      tanggal: dok.data().tanggal,
+      nis: dok.data().nis,
       nama: dok.data().nama,
       alamat: dok.data().alamat,
       noTlpn: dok.data().noTlpn,
+      kelas: dok.data().kelas,
+      keterangan: dok.data().keterangan,
+      
     });
   });
 
