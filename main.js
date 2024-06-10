@@ -56,16 +56,20 @@ export function formatAngka(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-export async function tambahPembeli(nama, alamat, noTlpn) {
+export async function tambahAbsensi(tanggal, nis, alamat, noTlpn, kelas, keterangan) {
   try {
-    const dokRef = await addDoc(collection(db, 'pembeli'), {
+    const dokRef = await addDoc(collection(db, 'absensi'), {
+      tanggal: tanggal,
+      nis: nis,
       nama: nama,
       alamat: alamat,
-      noTlpn: noTlpn
+      noTlpn: noTlpn,
+      kelas: kelas,
+      keterangan: keterangan
     });
-    console.log('berhasil menembah produk ' + dokRef.id);
+    console.log('berhasil menembah ' + dokRef.id);
   } catch (e) {
-    console.log('gagal menambah produk ' + e);
+    console.log('gagal menambah ' + e);
   }
 }
 
