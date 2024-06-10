@@ -37,13 +37,13 @@
     </tbody>
   </table>
 
- <div class="d-flex justify-content-center">
-  <img src="loader.gif" style="width: 15em; display: block" id="loader">
-</div>
+  <div class="d-flex justify-content-center">
+    <img src="loader.gif" style="width: 15em; display: block" id="loader">
+  </div>
 
-<div class="d-flex justify-content-center">
-  <button onclick="location.href='forum-absensi.html'" style="background-color: blue; color: white; border-radius: 10px;">Tambah Daftar Absensi</button>
-</div>
+  <div class="d-flex justify-content-center">
+    <button onclick="location.href='forum-absensi.html'" style="background-color: blue; color: white; border-radius: 10px;">Tambah Daftar Absensi</button>
+  </div>
 
   <style>
     table {
@@ -75,7 +75,7 @@
   </style>
 
   <script type="module">
-    import { ambilDaftarAbsensi, formatAngka, hapusPembeli } from './main.js';
+    import { ambilDaftarAbsensi, formatAngka, hapusAbsensi } from './main.js';
 
     $(document).ready(async function() {
       let elemenDaftar = $("#daftar-absensi > tbody");
@@ -93,10 +93,10 @@
           '<td>' + data.nama + '</td>' +
           '<td>' + data.alamat + '</td>' + '<td>' + data.noTlpn + '</td>' + '<td>' + data.kelas + '</td>' + '<td>' + data.keterangan + '</td>' +
           '<td class="stack-up">' +
-            ' <a href="#" class="btn btn-warning link-ubah"  data="' +
-            data.id +
-              '">ubah</a> '
-          + ' <button class="btn btn-danger tombol-hapus" data="' +
+          ' <a href="#" class="btn btn-warning link-ubah"  data="' +
+          data.id +
+          '">ubah</a> ' +
+          ' <button class="btn btn-danger tombol-hapus" data="' +
           data.id +
           '">Hapus</button>' + '</td>' +
           '</tr>'
@@ -105,7 +105,7 @@
       });
 
       $('.tombol-hapus').click(async function() {
-        await hapusPembeli($(this).attr('data'));
+        await hapusAbsensi($(this).attr('data'));
         location.reload();
       })
 
